@@ -1,6 +1,6 @@
 import "./Header.css";
 
-function Header({ storeName }) {
+function Header({ storeName, cartCount }) {
   return (
     <header className="header">
       <a className="header__brand" href="#">
@@ -14,8 +14,17 @@ function Header({ storeName }) {
         <a href="#contact">Contact</a>
       </nav>
 
-      <a className="header__button" href="#products">
-        Shop now
+      <a
+        className="header__button"
+        href="#cart"
+        aria-label={`Cart, ${cartCount} ${cartCount === 1 ? "item" : "items"}`}
+      >
+        <div className="cart-container">
+          <span className="cart-icon">🛒</span>
+          {/* Cart count display here*/}
+          <span>Cart</span>
+          <span className="cart-count">{cartCount}</span>
+        </div>
       </a>
     </header>
   );

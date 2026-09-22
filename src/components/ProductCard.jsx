@@ -1,6 +1,6 @@
 import "./ProductCard.css";
 
-function ProductCard({ name, price, image, description }) {
+function ProductCard({ product, name, price, image, description, onAddToCart }) {
   return (
     <article className="product-card">
       <img
@@ -23,7 +23,7 @@ function ProductCard({ name, price, image, description }) {
             ${price.toFixed(2)}
           </span>
 
-          <button className="product-card__button" type="button">
+          <button className="product-card__button" type="button" onClick={() => onAddToCart(product)}>
             Add to cart
           </button>
         </div>

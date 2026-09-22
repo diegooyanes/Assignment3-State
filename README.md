@@ -8,6 +8,7 @@ Tomate un Mate is a React storefront for premium yerba mate products and accesso
 - Reusable React components
 - Dynamic product cards generated from an array
 - Component data passed through props
+- Shopping cart with an item count, removal controls, and a calculated total
 - Accessible and semantic HTML structure
 - Individual CSS file for each component
 
@@ -16,7 +17,16 @@ Tomate un Mate is a React storefront for premium yerba mate products and accesso
 - `Header`: displays the store name and navigation
 - `Hero`: presents the main message and call to action
 - `ProductCard`: displays reusable product information
+- `CartItem`: displays an item in the cart with a remove button
 - `Footer`: displays contact information and store links
+
+## Product photos
+
+The product photos are illustrative images from Unsplash:
+
+- Mate cup: [Dominik Kłos](https://unsplash.com/photos/a-mate-cup-with-bombilla-ready-to-drink-qlyKBofhti0)
+- Yerba mate leaves: [Karol Majewski](https://unsplash.com/photos/dried-leaves-pack-fBpXql9e_g0)
+- Bombilla: [Artur Solarz](https://unsplash.com/photos/black-and-white-hair-brush-iEa7mimhjaM)
 
 ## Technologies
 

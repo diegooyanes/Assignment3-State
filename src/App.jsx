@@ -3,41 +3,60 @@ import Header from "./components/Header";
 import Hero from "./components/Hero";
 import ProductCard from "./components/ProductCard";
 import Footer from "./components/Footer";
-
-const products = [
-  {
-    id: 1,
-    name: "Imperial Leather Mate",
-    price: 64.99,
-    image:
-      "https://placehold.co/600x400/4f6b3c/ffffff?text=Imperial+Mate",
-    description:
-      "A handcrafted calabash mate wrapped in premium leather for a timeless ritual.",
-  },
-  {
-    id: 2,
-    name: "Organic Yerba Mate",
-    price: 16.5,
-    image:
-      "https://placehold.co/600x400/8a9a5b/ffffff?text=Organic+Yerba",
-    description:
-      "Smooth organic yerba with balanced flavor and a naturally energizing finish.",
-  },
-  {
-    id: 3,
-    name: "Stainless Steel Bombilla",
-    price: 22.99,
-    image:
-      "https://placehold.co/600x400/b56f45/ffffff?text=Premium+Bombilla",
-    description:
-      "A durable stainless steel bombilla with a removable filter for easy cleaning.",
-  },
-];
+import { useState } from "react";
+import CartItem from "./components/CartItem";
 
 function App() {
+  const products = [
+    {
+      id: 1,
+      name: "Imperial Leather Mate",
+      price: 64.99,
+      image: "/products/mate.jpg",
+      description:
+        "A handcrafted calabash mate wrapped in premium leather for a timeless ritual.",
+    },
+    {
+      id: 2,
+      name: "Organic Yerba Mate",
+      price: 16.5,
+      image: "/products/yerba.jpg",
+      description:
+        "Smooth organic yerba with balanced flavor and a naturally energizing finish.",
+    },
+    {
+      id: 3,
+      name: "Stainless Steel Bombilla",
+      price: 22.99,
+      image: "/products/bombilla.jpg",
+      description:
+        "A durable stainless steel bombilla with a removable filter for easy cleaning.",
+    },
+  ];
+
+  const [cartItems, setCartItems] = useState([]);
+
+  function addToCart(product) {
+    setCartItems((currentItems) => [
+      ...currentItems,
+      { ...product, cartId: crypto.randomUUID() },
+    ]);
+  }
+
+  function removeFromCart(cartId) {
+    setCartItems((currentItems) =>
+      currentItems.filter((item) => item.cartId !== cartId)
+    );
+  }
+
+  const cartTotal = cartItems.reduce(
+    (total, item) => total + item.price,
+    0
+  );
+
   return (
     <div className="app">
-      <Header storeName="Tomate un Mate" />
+      <Header storeName="Tomate un Mate" cartCount={cartItems.length} />
 
       <main>
         <Hero
@@ -60,13 +79,36 @@ function App() {
             {products.map((product) => (
               <ProductCard
                 key={product.id}
+                product={product}
                 name={product.name}
                 price={product.price}
                 image={product.image}
                 description={product.description}
+                onAddToCart={addToCart}
               />
             ))}
           </div>
+        </section>
+
+        <section className="cart-section" id="cart">
+          <h2>Your cart</h2>
+
+          {cartItems.length === 0 ? (
+            <p>Your cart is empty.</p>
+          ) : (
+            <>
+              <ul className="cart-list">
+                {cartItems.map((item) => (
+                  <CartItem
+                    key={item.cartId}
+                    item={item}
+                    onRemoveFromCart={removeFromCart}
+                  />
+                ))}
+              </ul>
+              <p className="cart-total">Total: ${cartTotal.toFixed(2)}</p>
+            </>
+          )}
         </section>
 
         <section className="about-section" id="about">
