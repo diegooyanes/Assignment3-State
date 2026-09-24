@@ -57,4 +57,4 @@ npm run build
 
 ## AI assistance
 
-Generative AI was used to suggest portions of the CSS styling. The generated material was reviewed, modified, and tested by the author.
+Generative AI was used to suggest portions of the CSS styling and to help find suitable product images and cite their sources correctly. The CSS was reviewed, modified, and tested by the author.
